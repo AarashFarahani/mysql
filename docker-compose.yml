@@ -11,7 +11,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "${MYSQL_PORT:-3306}:3306"
+      - "0.0.0.0:${MYSQL_PORT:-3306}:3306"
     volumes:
       # All data stored outside the container
       - ./data:/var/lib/mysql
