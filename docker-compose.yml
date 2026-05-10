@@ -10,12 +10,12 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    command: --skip-ssl
+    command: --skip-ssl --tls-version=""
     ports:
       - "0.0.0.0:${MYSQL_PORT:-3306}:3306"
     volumes:
-      # All data stored outside the container
-      - ./data:/var/lib/mysql
+      # Named volume — no permission issues
+      - mysql_data:/var/lib/mysql
       # Custom MySQL configuration
       - ./config/my.cnf:/etc/mysql/conf.d/my.cnf:ro
       # Optional: place .sql or .sh init scripts here
@@ -28,6 +28,10 @@ services:
       start_period: 30s
     networks:
       - mysql_net
+
+volumes:
+  mysql_data:
+    driver: local
 
 networks:
   mysql_net:
