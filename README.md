@@ -36,3 +36,4 @@ docker compose exec mysql mysql -u root -p
 - Place any `*.sql` or `*.sh` init scripts in `initdb/` — they run automatically on the very first startup (when `data/` is empty).
 - `data/` is gitignored by convention; add it to your `.gitignore`.
 - `config/my.cnf` is mounted read-only; edit on the host and restart the container to apply changes.
+- MySQL 8.4 keeps `mysql_native_password` disabled by default; this project enables it in `config/my.cnf` for older clients such as Seafile.

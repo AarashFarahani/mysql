@@ -3,6 +3,7 @@ services:
     image: mysql:8.4
     container_name: mysql
     restart: unless-stopped
+    command: --mysql-native-password=ON
     env_file:
       - .env
     environment:
